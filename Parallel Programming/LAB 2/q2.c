@@ -10,11 +10,9 @@ int main(int argc, char * argv[]) {
   int a;
   if (rank == 0) {
     int b = 5;
-    MPI_Send( & b, 1, MPI_INT, 1, 1, MPI_COMM_WORLD);
-    MPI_Send( & b, 1, MPI_INT, 2, 2, MPI_COMM_WORLD);
-    MPI_Send( & b, 1, MPI_INT, 3, 3, MPI_COMM_WORLD);
-    MPI_Send( & b, 1, MPI_INT, 4, 4, MPI_COMM_WORLD);
-
+    for(int i=1;i<b-1;i++)
+    MPI_Send( & b, 1, MPI_INT, i, i, MPI_COMM_WORLD);
+    
   } else {
     MPI_Recv( & a, 1, MPI_INT, 0, rank, MPI_COMM_WORLD, & status);
     printf("Process %d Number: %d\n", rank, a);
