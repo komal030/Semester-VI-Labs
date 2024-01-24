@@ -1,5 +1,7 @@
 #include<mpi.h>
+
 #include<stdio.h>
+
 #include<string.h>
 
 int nonvowel(char arr[]) {
@@ -17,17 +19,19 @@ int main(int argc, char * argv[]) {
   MPI_Init( & argc, & argv);
   MPI_Comm_size(MPI_COMM_WORLD, & size);
   MPI_Comm_rank(MPI_COMM_WORLD, & rank);
+  int chunk = 0;
   char arr[100];
   if (rank == 0) {
     printf("Enter String: ");
     scanf("%s", arr);
+    chunk = strlen(arr) / size;
+
   }
-  int chunk = strlen(arr) / size;
-  char brr[chunk + 1];
   MPI_Bcast( & chunk, 1, MPI_INT, 0, MPI_COMM_WORLD);
+  char brr[chunk + 1];
   MPI_Scatter(arr, chunk, MPI_CHAR, brr, chunk, MPI_CHAR, 0, MPI_COMM_WORLD);
   int countarr[size];
-
+  brr[chunk] = '\0';
   int c = nonvowel(brr);
   MPI_Gather( & c, 1, MPI_INT, countarr, 1, MPI_INT, 0, MPI_COMM_WORLD);
   if (rank == 0) {
