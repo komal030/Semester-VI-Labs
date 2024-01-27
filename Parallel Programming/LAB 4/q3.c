@@ -22,13 +22,13 @@ int main(int argc, char * argv[]) {
   int brr[3];
   int count[3];
   MPI_Bcast( & ele, 1, MPI_INT, 0, MPI_COMM_WORLD);
-  MPI_Scatter(arr, 1, MPI_INT, brr, 1, MPI_INT, 0, MPI_COMM_WORLD);
+  MPI_Scatter(arr, 3, MPI_INT, brr, 3, MPI_INT, 0, MPI_COMM_WORLD);
   int c = 0;
   for (int i = 0; i < 3; i++) {
     if (brr[i] == ele)
-      c++;
+      c=c+1;
   }
-  MPI_Gather(brr, 1, MPI_INT, count, 1, MPI_INT, 0, MPI_COMM_WORLD);
+  MPI_Gather(&c, 1, MPI_INT, count, 1, MPI_INT, 0, MPI_COMM_WORLD);
   if (rank == 0) {
     int total = 0;
     for (int i = 0; i < 3; i++) {
