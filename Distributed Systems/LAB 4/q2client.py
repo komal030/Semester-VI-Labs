@@ -6,9 +6,8 @@ udp_port = 31621
 
 while True:
     msg = input("Type some text to send => ")
-    s.sendto(msg.encode(), (udp_host,udp_port))
-    print(f"1. Client Sent: {message}")
+    sock.sendto(msg.encode(), (udp_host,udp_port))
+    print(f"1. Client Sent: {msg}")
 
-    data, addr = s.recvfrom(1024)
+    data, addr = sock.recvfrom(1024)
     print(f"2. Client received: {data.decode()}")
-
