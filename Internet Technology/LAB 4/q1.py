@@ -1,24 +1,21 @@
 class SubsetGenerator:
     def __init__(self, nums):
-        self.nums = nums
-        self.subsets = []
+        self.list = nums
+        self.ans = []
 
     def generate_subsets(self):
-        self._generate([], 0)
-        return self.subsets
+        self.cal([], 0)
+        return self.ans
 
-    def _generate(self, current_subset, index):
-        self.subsets.append(current_subset[:])
-
-        for i in range(index, len(self.nums)):
-            current_subset.append(self.nums[i])
-            self._generate(current_subset, i + 1)
+    def cal(self, current_subset, index):
+        self.ans.append(current_subset[:])
+        for i in range(index, len(self.list)):
+            current_subset.append(self.list[i])
+            self.cal(current_subset, i + 1)
             current_subset.pop()
 
-
 if __name__ == "__main__":
-    # Example usage using an object:
-    input_nums = [4, 5, 6]
-    subset_generator = SubsetGenerator(input_nums)
-    result = subset_generator.generate_subsets()
-    print(result)
+    list = [4, 5, 6]
+    obj = SubsetGenerator(list)
+    result = obj.generate_subsets()
+    print("Subsets:",result)
