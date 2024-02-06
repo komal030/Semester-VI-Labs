@@ -4,5 +4,5 @@ brr=np.array([[5,6],[7,8]])
 crr=np.multiply(arr,brr)
 print("First matrix\n",arr)
 print("Second Matrix\n",brr)
-print("Sum of Matrix\n",crr)
+print("Product of Matrix\n",crr)
 
