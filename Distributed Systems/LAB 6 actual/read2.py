@@ -1,24 +1,14 @@
-import fileinput
-max_value = 0
-old_key = None
+import sys
 
-for line in fileinput.input():
-    data = line.strip().split("\t")
-    
-    if len(data) != 2:
-        # Something has gone wrong. Skip this line.
-        continue
-    
-    current_key, current_value = data
-    
-    # Refresh for new keys (i.e. locations in the example context)
-    if old_key and old_key != current_key:
-        print(old_key, "\t", max_value)
-        old_key = current_key
-        max_value = float(current_value)
-    
-    if float(current_value) > float(max_value):
-        max_value = float(current_value)
+max_cost_per_location = {}
 
-if old_key is not None:
-    print(old_key, "\t", max_value)
+for line in sys.stdin:
+    location, cost = line.strip().split("\t")
+    cost = float(cost)
+    if location in max_cost_per_location:
+        max_cost_per_location[location] = max(max_cost_per_location[location], cost)
+    else:
+        max_cost_per_location[location] = cost
+
+for location, max_cost in max_cost_per_location.items():
+    print(f"{location}\t{max_cost}")
