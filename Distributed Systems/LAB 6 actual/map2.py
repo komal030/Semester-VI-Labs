@@ -1,7 +1,7 @@
-'''home/Komal/Desktop/Lab6/example.txt python3 map2.py|sort|python3 read2.py'''
-import fileinput
-for line in fileinput.input():
- data = line.strip().split("\t")
-if len(data) == 6:
- date, time, location, item, cost, payment = data
- print ("{0}\t{1}".format(location, cost))
+'''cat example.txt | python3 mapper.py | sort | python3 reducer.py'''
+import sys
+for line in sys.stdin:
+    data = line.strip().split("\t")
+    if len(data) == 6:
+        _, _, location, _, cost, _ = data
+        print(f"{location}\t{cost}")
