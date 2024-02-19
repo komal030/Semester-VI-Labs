@@ -5,8 +5,9 @@ for i in range(n):
  ele=int(input())
  l1.append(ele)
 print('list:',l1) 
+l2=l1.copy()
 for i in l1:
  if(i%2==0):
-  l1.remove(i)
+  l2.remove(i)
 print('List after removing even elements')
-print('list:',l1)
+print('list:',l2)
