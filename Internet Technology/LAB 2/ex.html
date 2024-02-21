@@ -1,0 +1,102 @@
+<html data-bs-theme="dark"> 
+	<head> 
+ 		<title>Bootstrap Example</title>  
+ 		<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> 
+ 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+ 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+ 		<script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
+ 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script type = "text/javascript" src = "jquery-3.7.1.min.js"></script>
+		<script type = "text/javascript" language = "javascript">
+			$(document).ready(function(){
+				var index = 1;
+				$('#b1').click(function(){
+					$('#form').show();
+					$('#btn').click(function(){
+						var name = $('#name').val();
+						var number = $('#number').val();
+						var gender = $('input[name = "radio"]:checked').val();
+						var newRow = '<tr>' + '<th>' + index + '</th>' + '<td>' + name + '</td><td>' + number + '</td><td>' + gender + '</td>' + '</tr>';
+						$('#body').append(newRow);
+						index++;
+						$('#form').hide(); 
+						$('#myForm')[0].reset();
+					});
+				});
+				$('#b4').click(function(){
+					$('#delete').show();
+					$('#btn1').click(function(){
+						var rowIndex = parseInt($('#index').val());
+						alert(rowIndex);
+                        // $("tr").eq(rowIndex).remove();
+						 $('#body').find('tr').filter(function() {
+            			 return parseInt($(this).find('th').text(), 10) === rowIndex;}).remove();
+					});
+				});
+			});
+		</script>
+ 		<style>
+ 			.form-control{
+ 				width : 150px;
+ 				height : 40px;
+ 			}
+ 			.txt{
+ 				text-decoration: none;
+ 			}
+ 			 #t1{
+ 				width : 70%;
+ 				margin-left: auto;
+  				margin-right: auto;
+ 			}
+ 			#b1{
+ 				margin-left: 37%;
+ 			}
+ 		</style> 
+	</head> 
+	<body> 
+  		<table class="table table-hover table-condensed" id = "t1">
+  			<thead>
+    			<tr>
+      				<th scope="col">#</th>
+      				<th scope="col">Name</th>
+      				<th scope="col">Number</th>
+      				<th scope="col">Gender</th>
+    			</tr>
+    		</thead>	
+    		<tbody id = "body">
+				<td>1</td>
+				<td>Vaibhav</td>
+				<td>19876</td>
+				<td>Male</td>
+
+    		</tbody>
+		</table><br>
+		<button type="button" class="btn btn-outline-info" id = "b1">Create</button>
+		<button type="button" class="btn btn-outline-info" id = "b2">Read</button>
+		<button type="button" class="btn btn-outline-info" id = "b3">Update</button>
+		<button type="button" class="btn btn-outline-info" id = "b4">Delete</button>
+		<form id = "form" style = "display : none">
+			<div class="mb-3">
+    			<label for="exampleInputEmail1" class="form-label"><b>Name : </b></label>
+    			<input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+  			</div>
+  			<div class="mb-3">
+    			<label for="exampleInputEmail1" class="form-label"><b>Mobile Number : </b></label>
+    			<input type="text" class="form-control" id="number" aria-describedby="emailHelp">
+  			</div>
+  			<ins class = "txt"><b>Gender :</b></ins> 
+  			<div class="form-check">
+  				<input class="form-check-input" type="radio" name="radio" id="r1" value = "Male">
+  				<label class="form-check-label" for="flexRadioDefault1">Male</label><br>
+  				<input class="form-check-input" type="radio" name="radio" id="r2" value = "Female">
+  				<label class="form-check-label" for="flexRadioDefault2">Female</label>
+			</div><br>
+			<button type="button" class="btn btn-primary" id = "btn">Submit</button><br><br>
+		</form>
+		<form id = "delete" style = "display : none">
+			<label for="exampleInputEmail1" class="form-label"><b>Index entry to be deleted : </b></label>
+    		<input type="text" class="form-control" id="index" aria-describedby="emailHelp"><br>
+			<button type="button" class="btn btn-primary" id = "btn1">Submit</button><br><br>
+		</form>	
+	</body>
+</html>

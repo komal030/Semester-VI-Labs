@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>The jQuery Example</title>
+		<script src = "jquery-3.7.1.min.js">
+		</script>
+		<script>
+			$(document).ready(function() {
+				$("div").hover(function(){
+                $("div").hide();
+                },
+                function(){
+                    $("div").show();
+                });
+			});
+		</script>
+	</head>
+	<body>
+		<div id = "mydiv">
+			Click to see a dialouge box
+		</div>
+	</body>
+</html>

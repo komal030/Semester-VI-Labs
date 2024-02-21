@@ -1,106 +1,110 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <title>Student Bio-Data Form</title>
+    <title>Question 1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        body {
+            margin-left: 20px;
+        }
+    </style>
+    <script>
+  
+        $(document).ready(function () {
+            var index = 0;
+            $("table").hide();
+            $("button").click(function () {
+                
+                var name = $("#name").val();
+                var age = parseInt($("#age").val());
+                var gender = $("input[name='gender']:checked").val();
+                var sem = $("#semester").val();
+                var swim = $("#swim").is(":checked");
+                var gym = $("#gym").is(":checked");
+                var mess = $("#mess").is(":checked");
+                var fac="";
+                if (gym)
+                    fac=fac+" gym";
+                if (swim)
+                fac=fac+" swimming";
+                if (mess)
+                fac=fac+" mess";
+                $("tbody").append("<tr>" + "<td>" + index + "</td>" + "<td>" + name + "</td>" + "<td>" + age + "</td>" + "<td>" + gender + "</td>" + "<td>" + sem + "</td>" + "<td>" + fac + "</td>"+ "</tr>");
+                
+                $("table").show();
+                index++;
+            });
+        });
+    </script>
 </head>
+
 <body>
-
-<div class="container">
-  <h2 class="text-center">Student Bio-Data Form</h2>
-  <form>
-    <div class="form-group">
-      <label for="rollNumber">Roll Number:</label>
-      <input type="text" class="form-control" id="rollNumber" placeholder="Enter your roll number" required>
-    </div>
-
-    <div class="form-group">
-      <label for="fullName">Full Name:</label>
-      <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
-    </div>
-
-    <div class="form-group">
-      <label for="gender">Gender:</label>
-      <div>
-        <input type="radio" id="male" name="gender" value="Male" checked>
-        <label for="male">Male</label>
-      </div>
-      <div>
-        <input type="radio" id="female" name="gender" value="Female">
-        <label for="female">Female</label>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="address">Address:</label>
-      <textarea class="form-control" id="address" rows="3" placeholder="Enter your address" required></textarea>
-    </div>
-
-    <div class="form-group">
-      <label for="semester">Semester:</label>
-      <select class="form-control" id="semester" required>
+    <h1>
+        Student Bio-Data
+    </h1>
+    Enter name:
+    <input type="text" placeholder="Name" id="name">
+    <br><br>
+    Enter Age:
+    <input type="text" placeholder="Age" id="age">
+    <br><br>
+    Select Gender:
+    <br>
+    <input type="radio" name="gender" value="male">Male
+    <input type="radio" name="gender" value="female">Female
+    <br><br>
+    Select Semester:
+    <br>
+    <select id="semester">
         <option value="1">I</option>
         <option value="2">II</option>
         <option value="3">III</option>
         <option value="4">IV</option>
-      </select>
-    </div>
+    </select>
+    <br><br>
+    Select facilities:
+    <br>
+    <input type="checkbox" val="swim" id="swim">Swimming
+    <br>
+    <input type="checkbox" val="gym" id="gym">Gym
+    <br>
+    <input type="checkbox" val="mess" id="mess">Mess
+    <br>
+    <button type="button" class="btn btn-info">Submit</button>
+    <br>
+    <br>
 
-    <div class="table-responsive">
-      <table class="table table-striped">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Facility</th>
+            </tr>
+        </thead>
         <tbody>
-          <tr>
-            <th>Field of Study</th>
-            <th>Open-Elective</th>
-            <th>Are you choosing this Open-Elective?</th>
-          </tr>
-          <tr>
-            <td>Finance</td>
-            <td>Corporate Accounting</td>
-            <td>
-              <input type="radio" name="radios1" id="radio1" />
-              <label for="radio1">Yes</label>
-              <input type="radio" name="radios1" id="radio2" />
-              <label for="radio2">No</label>
-            </td>
-          </tr>
-          <tr>
-            <td>Computer Science</td>
-            <td>Big Data Analytics</td>
-            <td>
-              <input type="radio" name="radios2" id="radio1" />
-              <label for="radio1">Yes</label>
-              <input type="radio" name="radios2" id="radio2" />
-              <label for="radio2">No</label>
-            </td>
-          </tr>
-          <tr>
-            <td>Medical Science</td>
-            <td>Neurology</td>
-            <td>
-              <input type="radio" name="radios3" id="radio1" />
-              <label for="radio1">Yes</label>
-              <input type="radio" name="radios3" id="radio2" />
-              <label for="radio2">No</label>
-            </td>
-          </tr>
         </tbody>
-      </table>
-    </div>
+    </table>
+    <br>
+    <br>
+    <div id="display1"></div>
 
-    <div>
-      <input type="checkbox" id="confirmDetails">
-      <label for="confirmDetails">Please tick the checkbox to Confirm your Details</label>
-    </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<!-- Bootstrap JavaScript -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

@@ -1,65 +1,56 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>Question Two</title>
-    <style>
-        #container {
-            border:groove;
-            width: 200px;
-            padding: 10px;
-        }
-        button {
-            margin-top: 1rem;
-        }
-    </style>
-   <script type = "text/javascript" src = "jquery-3.7.1.js">
-    </script>
-    <script type = "text/javascript" language = "javascript">
-        $(document).ready(function () {
-            $("button").click(function () {
-                var first = $("#fn").val();
-                var second = $("#sn").val();
-                var ans = 0;
-                var selected = $("#op").children("option:selected").val();
-                switch (selected) {
-                    case "plus":
-                        ans = parseInt(first) + parseInt(second);
+<!Doctype html>
+<html>
+    <head>
+<script src="jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            var num1 = parseFloat($("#num1").val());
+            var num2 = parseFloat($("#num2").val());
+            var oper = $("input[name='op']:checked").val();//radio
+            var result;
+            if (!oper)
+                alert("No radio button selected");
+            else if (isNaN(num1) || isNaN(num2))
+                alert("Invalid Numbers");
+            else {
+                switch (oper) {
+                    case "add":
+                        result = num1 + num2;
                         break;
-                    case "minus":
-                        ans = parseInt(first) - parseInt(second);
+                    case "sub":
+                        result = num1 - num2;
                         break;
-                    case "multiply":
-                        ans = parseInt(first) * parseInt(second);
+                    case "div":
+                        result = num1 / num2;
                         break;
-                    case "divide":
-                        ans = parseInt(first) / parseInt(second);
-                        break;
-                    default:
-                        ans = -1;
+                    case "mul":
+                        result = num1 * num2;
                         break;
                 }
-
-                $("#answer").text(ans);
-            })
-        })
-    </script>
+                $("#display").text("Result:" + result);
+            }
+        });
+    });
+</script>
+<title>Question 2</title>
 </head>
 <body>
-    <div id="container">
-        <label for="fn">First number:</label><br />
-        <input type="text" id="fn"><br /><br />
-        <label for="sn">Second number:</label><br />
-        <input type="text" id="sn"><br /><br />
-        <label for="op">Choose an operation:</label><br /><br />
-        <select id="op" name="operations">
-            <option value="plus" selected>+</option>
-            <option value="minus">-</option>
-            <option value="multiply">*</option>
-            <option value="divide">/</option>
-        </select><br />
-        <button type="button">Calculate!</button><br /><br />
-        <p id="answerT">The answer is : <span id ="answer"></spanid> </p>
-    </div>
+    <p>Enter the first number</p>
+    <input type="text" id="num1" val="num1">
+    <p>Enter the second number</p>
+    <input type="text" id="num2" val="num2">
+    <br>
+    <input type="radio" value="add" name="op">Add
+    <br>
+    <input type="radio" value="sub" name="op">Subtract
+    <br>
+    <input type="radio" value="div" name="op">Divide
+    <br>
+    <input type="radio" value="mul" name="op">Multiply
+    <br>
+    <input type="submit" id="submit">
+    <div id="display"></div>
 </body>
+
 </html>

@@ -1,15 +1,12 @@
-class UpperCase:
+class PString:
     def __init__(self):
-        self.arr=""
-    def getString(self):
-        self.arr=input("Enter a string:")
-        
-    def printString(self):
-        print("Upper case",self.arr.upper())
-        
-if __name__=="__main__":
-    obj=UpperCase()
-    obj.getString()
-    obj.printString()
+        self.str=""
+    def get_string(self):
+        self.str=input("Enter String:")
+    def print_string(self):
+        print("Given string:",self.str)
 
-        
+if __name__=="__main__":
+    obj=PString()
+    obj.get_string()
+    obj.print_string()                

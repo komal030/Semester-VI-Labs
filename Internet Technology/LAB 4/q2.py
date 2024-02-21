@@ -1,25 +1,23 @@
 class Target:
-    def __init__(self, nums, targ):
-        self.arr = nums
-        self.ans = []
-        self.target = targ
+    def __init__(self,brr,x):
+        self.arr=brr
+        self.target=x
+    def checksum(self):
+        list=[]
+        n=len(self.arr)
+        for i in range (0,n):
+            for j in range (i+1,n):
+                if(self.arr[i]+self.arr[j]==self.target):
+                    temp=[]
+                    temp.append(i)
+                    temp.append(j)
+                    list.append(temp)
+        return list
+ 
+if __name__=="__main__":
+    data=[10,20,30,40,50,60]
+    obj=Target(data,50)
+    index=obj.checksum()
+    print(index)                
 
-    def cal(self):
-        for i in range(len(self.arr)):
-            for j in range(i + 1, len(self.arr)):
-                if self.arr[i] + self.arr[j] == self.target:
-                    self.ans.append((i, j))
-        return self.ans
-
-if __name__ == "__main__":
-    numlist = list(map(int, input("Enter a list of numbers separated by space: ").split()))
-    targ = int(input("Enter target: "))
-    obj = Target(numlist, targ)
-    res = obj.cal()
-
-    if res:
-        print("Pairs of Indices:")
-        for pair in res:
-            print(pair)
-    else:
-        print("No pairs found.")
+        

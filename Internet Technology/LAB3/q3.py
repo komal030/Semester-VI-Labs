@@ -1,18 +1,20 @@
-def binary_search(arr, low, high, x):
-    if high >= low:
-        mid = (high + low) // 2
-        if arr[mid] == x:
-            return mid
-        elif arr[mid] > x:
-            return binary_search(arr, low, mid - 1, x)
-        else:
-            return binary_search(arr, mid + 1, high, x)
-    else:
-        return -1
-arr = [ 2, 3, 4, 10, 40 ]
-x = int(input('Enter number to be searched: '))
-result = binary_search(arr, 0, len(arr)-1, x)
-if result != -1:
-    print("Element is present at index",result)
-else:
-    print("Element is not present in array")
+def binsearch(arr,l,u,x):
+ while(l<u):
+     mid=(l+u)//2
+     if(arr[mid]==x):
+         print("Element found at index:",mid)
+         return
+     elif(arr[mid]>x):
+         return binsearch(arr,l,mid-1,x)
+     else:
+         return binsearch(arr,mid+1,u,x) 
+ print("Element not found")           
+
+arr=[1,2,3,4,5,6]
+l=0
+u=len(arr)
+binsearch(arr,l,u-1,9)
+
+
+
+

@@ -1,114 +1,103 @@
-<!DOCTYPE html>
+<html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    <title>Question Three</title>
     <style>
-        #container {
-            display:flex;
+
+        #container1 {
+            border: 2px solid black;
         }
-        #left,#right{
+
+        #text1 {
+        float:left;
+       
+        width:50%;
+        }
+
+        #image1 {
+            display: none;
+            height:100%;
             width:50%;
-            height:100vh;
-            border:2px solid black;
-            padding:2rem;
-        }
-        #left {
-            background-color: lightpink;
-        }
-        #right{
-            text-align:center;
 
         }
-        #greet{
-            margin-top:5rem;
-            margin-bottom:2rem;
-        }
-        img{
-            display:none;
-        }
-        button {
-            margin-top: 1rem;
+
+
+        #wish1 {
+            height: 80px;
+            width: 200px;
         }
     </style>
-  <script type = "text/javascript" src = "jquery-3.7.1.js">
-    </script>
-    <script type = "text/javascript" language = "javascript">
+    <script src="jquery-3.7.1.min.js"></script>
+    <script>
         $(document).ready(function () {
             $("button").click(function () {
-                var bgco = $("#bgc").children("option:selected").val();
-                var font = $("#fo").children("option:selected").val();
-                var fsi = $("#fs").val();
-                var gr = $("#greeting").val();
-                var bds = $('input[type="radio"]:checked'); 
-                if (bds.length > 0) {
-                    var [b] = bds;
-                    var bdss = b.value;
+
+                var bgcol = $("#bgcolor").val()//selecting from dropdown
+                $("#image1").css("background-color", bgcol)
+                var fonttype = $("#bgfont").val()//selecting from dropdown
+                var col = $("input[name='bstyle']:checked").val();//selecting from radio
+                var textdisp = $("#wish1").val()//selcting from text box
+                $("#display1").css("font-family", fonttype,)
+                if (col == "double") {
+                    $("#image1").css("border", "3px double black");
                 }
-                else {
-                    var bdss = "none";
+                else if (col == "solid") {
+                    $("#image1").css("border", "3px solid black");
                 }
-                var imgc = $('input[type="checkbox"]:checked'); 
-                if (imgc.length == 0) {
-                    $("img").css("display", "none");
+               
+                if ($("#check1").is(":checked")) {
+                    $("#image1").css({
+                        "display": "flex",
+                        "justify-content": "center", // Horizontally center the content
+                        "align-items": "center" // Vertically center the content
+                    });
+                    $("#image1").show();
                 }
-                else {
-                    $("img").css("display", "inline-block");
-                }
-                $("#right").css("background-color", bgco);
-                $("#right").css("font-family", font);
-                $("#right").css("font-size", fsi + "px");
-                $("#right").css("border", "2px " + bdss + " black");
-                $("#greet").text(gr);
-            })
-        })
+                $("#display1").text(textdisp);
+
+
+            });
+        });
     </script>
 </head>
+
 <body>
-    <div id="container">
-        <div id="left">
-            <label for="bgc">Choose a background color:</label><br /><br />
-            <select id="bgc" name="color">
-                <option value="yellow" selected>Yellow</option>
-                <option value="green">Green</option>
-                <option value="red">Red</option>
-                <option value="blue">Blue</option>
+    <div id="container1">
+        <div id="text1">
+            <h2>Choose a background colour:</h2>
+            <select id="bgcolor">
+                <option value="yellow">Yellow</option>
                 <option value="pink">Pink</option>
+                <option value="blue">Blue</option>
             </select>
-            <br /><br />
-            <label for="fo">Choose a font:</label><br /><br />
-            <select id="fo" name="fon">
-                <option value="Arial" selected>Arial</option>
-                <option value="Cursive">Cursive</option>
-                <option value="Monospace">Monospace</option>
+
+            <h2>Choose a font:</h2>
+            <select id="bgfont">
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="Courier New, monospace">Courier New</option>
+                <option value="Times New Roman, serif">Times new Roman</option>
             </select>
-            <br /><br />
 
-            <label for="fs">Specify a numeric font size:</label><br /><br />
-            <input type="text" id="fs"><br /><br />
+            <h2>Choose a border style:</h2>
+            <input type="radio" name="bstyle" value="None">None
+            <br>
+            <input type="radio" name="bstyle" value="double">Double
+            <br>
+            <input type="radio" name="bstyle" value="solid">Solid
+            <br>
 
-            <label>Choose a border style:</label><br /><br />
-            <input type="radio" id="none" name="bod_style" value="none">
-            <label for="none">None</label><br>
-            <input type="radio" id="double" name="bod_style" value="double">
-            <label for="double">Double</label><br />
-            <input type="radio" id="solid" name="bod_style" value="solid">
-            <label for="solid">Solid</label><br /><br />
+            <input type="checkbox" id="check1">Add the default picture
+            <br>
 
-            <input type="checkbox" id="imgd" name="imageDefault" value="image">
-            <label for="imgd">Add the Default Picture</label><br /><br />
+            <input type="text" id="wish1" placeholder="Write birthday wish">
+            <br><br>
 
-            <label for="greeting">Enter the greeting text below:</label><br /><br />
-            <textarea rows="5" cols="40" name="greeting" id="greeting"></textarea><br /><br />
-
-            <button type="button">Update!</button><br /><br />
+            <button type="submit">Update</button>
         </div>
-        <div id="right">
-            <div id="greet">Default text here!</div>
-            <img src="image1.jpg" alt="college image" width="200" height="200">
+        <div id="image1">
+            <div id="display1"></div>
+            <img src="img.jpeg" alt="invalid" height="300" id="candy">
         </div>
-
     </div>
 </body>
+
 </html>

@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>The jQuery Example</title>
+		<script src = "jquery-3.7.1.min.js">
+		</script>
+		<script >
+			     $(document).ready(function() {
+            $("button").click(function(){
+                $("#mydiv").animate({
+                    left: "+=50px"
+                });
+            });
+        });
+		</script>
+	</head>
+	<body>
+        <button>Click to toggle</button>
+		<div id = "mydiv" style="position:absolute">
+			Click to see a dialouge box
+		</div>
+	</body>
+</html>

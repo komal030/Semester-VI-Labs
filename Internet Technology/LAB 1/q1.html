@@ -1,55 +1,57 @@
-<!DOCTYPE html>
-
+<!Doctype html>
 <html>
-<head>
-    <title>Question One</title>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            padding: 1rem;
-        }
-        #wrapper {
-            display: flex;
-            justify-content: flex-end;
-        }
-        button{
-            margin-top: 1rem;
-        }
-    </style>
-    <script type = "text/javascript" src = "jquery-3.7.1.js">
-    </script>
-    <script type = "text/javascript" language = "javascript">
-        $(document).ready(function () {
-            $("button").click(function () {
-                $("#wrapper").css("justify-content", "flex-start");
-            })
-        })
-    </script>
-</head>
-<body>
-    <div id="container">
-        <div id="wrapper">
-            <table>
-                <tr>
-                    <td bgcolor="yellow">One</td>
-                    <td bgcolor="yellow">Two</td>
-                    <td bgcolor="yellow">Three</td>
-                </tr>
-                <tr>
-                    <td bgcolor="pink">Four</td>
-                    <td bgcolor="pink">Five</td>
-                    <td bgcolor="pink">Six</td>
-                </tr>
-                <tr>
-                    <td bgcolor="yellow">Seven</td>
-                    <td bgcolor="yellow">Eight</td>
-                    <td bgcolor="yellow">Nine</td>
-                </tr>
-            </table>
-            <br />
-            <img src="image1.jpg" alt="Invalid image" width="200" height="200">
+    <head>
+        <title>Question 1</title>
+        <style>
+            table,th,tr,td{
+                border: 1px solid black;
+                border-collapse:collapse;
+                width:50%;
+                text-align:center;
+            }
+            .tr1,.tr3{
+                background-color:yellow;
+            }
+            .tr2{
+                background-color:pink;
+            }
+        </style>
+        <script src="jquery-3.7.1.min.js"></script>
+        <script>
+                $(document).ready(function(){
+                    $("button").click(function(){
+                        $(".shifttable").animate(
+                        {
+                            left:"+=100px"
+                        });
+                    });
+                });
+        </script>
+    </head>
+    <body>
+        <div class="shifttable" style="position:relative" >
+            <img src="img.jpeg" width="400" alt="invalid">
+        <table >
+            <caption>
+                Information
+            </caption>
+            <tr class="tr1">
+                <th>Serial</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            <tr class="tr2">
+                <td>1</td>
+                <td>Komal</td>
+                <td>20</td>
+            </tr>
+            <tr class="tr3">
+                <td>2</td>
+                <td>Chirag</td>
+                <td>26</td>
+            </tr>
+        </table>
         </div>
-        <button type="button">Move right to left!</button>
-    </div>
-</body>
+        <button>Click me!</button>
+    </body>
 </html>
